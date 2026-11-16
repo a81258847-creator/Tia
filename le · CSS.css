@@ -1,0 +1,126 @@
+le · CSS
+/* ---------- 1. VARIABLES (colour palette + fonts) ---------- */
+:root {
+  --green: #2f4a37;
+  --black: #000;
+  --cream: #f5eee1;
+  --yellow: #fcad16;
+  --orange: #c2683a;
+  --red: #fb5d3a;
+  --ink: #1f1a10;
+  --display: "Gloock", Georgia, serif;
+  --body: "Montserrat", Arial, sans-serif;
+}
+ 
+/* ---------- 2. ELEMENT SELECTORS (reset + base) ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+body { font-family: var(--body); background: var(--cream); color: var(--ink); line-height: 1.6; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+h2, h3 { font-family: var(--display); font-weight: 400; }
+section { padding: 80px 6vw; }
+ 
+/* ---------- 3. NAVBAR (flexbox + sticky position) ---------- */
+.navbar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 6vw; background: var(--green); color: var(--cream);
+}
+.logo { font-family: var(--display); font-size: 1.4rem; }
+.nav-links { display: flex; align-items: center; gap: 28px; font-size: .9rem; }
+.nav-links a:hover { color: var(--yellow); }
+.btn { background: var(--yellow); color: var(--ink); padding: 8px 18px; border-radius: 999px; font-weight: 600; }
+.nav-links .btn:hover { color: var(--ink); background: var(--cream); }
+ 
+/* ---------- 4. HERO (absolute positioning + layered text) ---------- */
+.hero {
+  position: relative; display: flex; align-items: center; gap: 4vw;
+  min-height: 90vh; background: linear-gradient(var(--green) 70%, var(--black) 70%);
+  color: var(--cream); overflow: hidden;
+}
+.hero-photo { position: relative; width: 36%; background: var(--orange); aspect-ratio: 1 / 1.1; flex-shrink: 0; }
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; background: var(--orange); }
+.hero-note { position: absolute; left: -4vw; bottom: -28px; width: 90%; font-size: .75rem; color: #fff; }
+.big-word { font-size: clamp(3.5rem, 12vw, 10rem); line-height: 1; letter-spacing: -2px; }
+.outline-word {
+  font-family: var(--display); font-size: clamp(3.5rem, 12vw, 10rem); line-height: .9;
+  color: transparent; -webkit-text-stroke: 2px var(--yellow);
+}
+.hero-links { margin-top: 24px; font-size: 1.05rem; }
+.scroll-btn {
+  position: absolute; left: 50%; bottom: -20px; transform: translateX(-50%);
+  width: 110px; height: 110px; border-radius: 50%; background: var(--yellow); color: var(--ink);
+  display: flex; align-items: center; justify-content: center; text-align: center; font-weight: 500;
+}
+ 
+/* ---------- 5. ABOUT (flexbox, card, pseudo-element grid overlay) ---------- */
+.about { display: flex; justify-content: space-between; align-items: center; gap: 5vw; padding-top: 130px; }
+.about-text { max-width: 440px; }
+.display { font-size: clamp(2.8rem, 6vw, 4.5rem); line-height: 1.15; margin-bottom: 24px; }
+.pill-link { display: inline-block; margin-top: 24px; background: var(--red); color: #fff; padding: 12px 28px; border-radius: 999px; }
+.about-card { position: relative; width: 340px; }
+.photo-grid { position: relative; background: var(--green); height: 300px; }
+.photo-grid img { width: 100%; height: 100%; object-fit: cover; }
+.photo-grid::after {   /* square-grid overlay from the second design */
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(60,10,15,.55) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(60,10,15,.55) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+.tag { position: absolute; background: var(--yellow); padding: 10px 22px; border-radius: 999px; font-size: .85rem; z-index: 2; }
+.tag-top { top: 90px; left: -50px; }
+.tag-bottom { top: 200px; right: -40px; }
+.contact-box { background: var(--black); color: #fff; padding: 22px 26px; }
+.contact-box h3 { font-size: 1.8rem; margin-bottom: 8px; }
+.contact-box p { font-size: .9rem; }
+ 
+/* ---------- 6. RESUME (CSS grid, two columns) ---------- */
+.resume { display: grid; grid-template-columns: 1fr 1fr; gap: 5vw; background: var(--green); color: var(--cream); }
+.title-yellow, .exp-card h2 { font-size: 2.4rem; margin-bottom: 24px; }
+.title-yellow { color: var(--yellow); }
+.timeline li { display: flex; gap: 28px; padding-left: 26px; margin-bottom: 22px; position: relative; }
+.timeline li::before { content: "\2726"; position: absolute; left: 0; top: 2px; color: var(--red); }
+.timeline .year { font-family: var(--display); font-size: 1.4rem; min-width: 110px; }
+.timeline strong { display: block; font-weight: 500; }
+.timeline small { font-size: .8rem; opacity: .85; }
+.exp-card { background: var(--yellow); color: var(--ink); padding: 30px; margin-top: 40px; }
+.timeline.dark li::before { color: #fff; }
+ 
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 30px; }
+.skills-grid h3 { font-size: 1.3rem; margin-bottom: 10px; }
+.icons { display: flex; gap: 8px; }
+.icons span { background: var(--cream); color: var(--green); font-weight: 600; padding: 6px 10px; border-radius: 6px; }
+.small { font-size: .85rem; }
+.small-list { display: grid; grid-template-columns: 1fr 1fr; font-size: .85rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+.chip { background: var(--black); color: #fff; padding: 8px 20px; border-radius: 999px; font-size: .85rem; }
+.dark-chip { background: var(--black); }
+ 
+/* ---------- 7. INTERESTS ---------- */
+.interests { display: grid; grid-template-columns: 1fr 1fr; gap: 5vw; }
+.display-sm { font-size: 2.6rem; margin-bottom: 20px; }
+.lang-row, .hobby-row { display: flex; gap: 28px; flex-wrap: wrap; }
+.lang-row strong { display: block; font-family: var(--display); font-size: 1.3rem; font-weight: 400; }
+.lang-row small { opacity: .8; }
+.hobby { text-align: center; font-size: .85rem; }
+.dot { display: block; width: 56px; height: 56px; margin: 0 auto 8px; border-radius: 50%; background: var(--yellow); }
+.hobby:hover .dot { background: var(--red); }
+ 
+.footer { background: var(--black); color: var(--cream); text-align: center; padding: 24px; font-size: .85rem; }
+ 
+/* ---------- 8. RESPONSIVE (media queries) ---------- */
+@media (max-width: 900px) {
+  .hero, .about { flex-direction: column; align-items: flex-start; }
+  .hero-photo, .about-card { width: 100%; max-width: 340px; }
+  .resume, .interests { grid-template-columns: 1fr; }
+  .nav-links { gap: 14px; font-size: .8rem; }
+  .nav-links li:nth-child(3) { display: none; }
+  .tag-top { left: 0; }
+  .tag-bottom { right: 0; }
+}
+@media (max-width: 520px) {
+  .logo { font-size: 1.05rem; }
+  .timeline li { flex-direction: column; gap: 2px; }
